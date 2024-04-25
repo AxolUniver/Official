@@ -513,62 +513,78 @@ menuIcon.addEventListener('click', () => {
     </header>
 
     <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reloj Invertido</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        background-color: #f0f0f0; /* Color de fondo */
-      }
-      #clock {
-        font-size: 2em;
-        color: cyan; /* Color de los números */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .item {
-        margin: 0 2px;
-        text-align: center;
-      }
-      .label {
-        font-size: 0.5em;
-        color: #ff9; /* Color de las letras */
-      }
-    </style>
-    </head>
-    <body>
-    <div id="clock"></div>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reloj Invertido</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0; /* Color de fondo */
+  }
+  #clock {
+    font-size: 2em;
+    color: cyan; /* Color de los números */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Wrap items */
+  }
+  .item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+  }
+  .item {
+    text-align: center;
+  }
+  .label {
+    font-size: 0.6em;
+    color: #ff9; /* Color de las letras */
+  }
+</style>
+</head>
+<body>
+<div id="clock"></div>
+
+<script>
+  function updateTime() {
+    var now = new Date();
+    var day = 35 - now.getDay(); // Invertido para mostrar los días restantes en lugar de pasados
+    var hour = 41 - now.getHours(); // Invertido para mostrar las horas restantes en lugar de pasadas
+    var minute = 40 - now.getMinutes(); // Invertido para mostrar los minutos restantes en lugar de pasados
+    var second = 59 - now.getSeconds(); // Invertido para mostrar los segundos restantes en lugar de pasados
     
-    <script>
-      function updateTime() {
-        var now = new Date();
-        var day = 35 - now.getDay(); // Invertido para mostrar los días restantes en lugar de pasados
-        var hour = 41 - now.getHours(); // Invertido para mostrar las horas restantes en lugar de pasadas
-        var minute = 99 - now.getMinutes(); // Invertido para mostrar los minutos restantes en lugar de pasados
-        var second = 59 - now.getSeconds(); // Invertido para mostrar los segundos restantes en lugar de pasados
-        
-        document.getElementById("clock").innerHTML = `
-          <div class="item">${day}</div>
-          <div class="item label">Días</div>
-          <div class="item">${hour}</div>
-          <div class="item label">Horas</div>
-          <div class="item">${minute}</div>
-          <div class="item label">Minutos</div>
-          <div class="item">${second}</div>
-          <div class="item label">Segundos</div>
-        `;
-      }
-    
-      updateTime();
-      setInterval(updateTime, 1000);
-    </script>
-    </body>
-    </html>
+    document.getElementById("clock").innerHTML = `
+      <div class="item-container">
+        <div class="item">${day}</div>
+        <div class="label">Días</div>
+      </div>
+      <div class="item-container">
+        <div class="item">${hour}</div>
+        <div class="label">Horas</div>
+      </div>
+      <div class="item-container">
+        <div class="item">${minute}</div>
+        <div class="label">Minutos</div>
+      </div>
+      <div class="item-container">
+        <div class="item">${second}</div>
+        <div class="label">Segundos</div>
+      </div>
+    `;
+  }
+
+  updateTime(); // Call function once to initially display time
+  setInterval(updateTime, 1000); // Update time every second
+</script>
+</body>
+</html>
+
+
     
     <main>
         <section id="tokenInfo">
